@@ -7,7 +7,7 @@ ZJ is a collection of small utility scripts that make starting, managing, and cl
 ## Features
 1. Correctly sets the current working directory when starting a new zellij session pointed at a project directory
 1. Automatically names your new sessions after the directory you've opened
-1. Provides a `zellij_clear` script that will delete exited sessions
+1. Provides a `zj_clear` script that will delete exited sessions
 1. Provides a useful ["ide" layout](./layouts/ide.kdl) that combines your `$EDITOR` with common pane sizes that mimics an IDE layout
 
 ## Installation
@@ -65,7 +65,7 @@ $ env ZJ_ALWAYS_NAME=true
 $ zj /home/user/development/zj 
 ```
 
-### `zellij_clear`
+### `zj_clear`
 
 The `zellij_clear` command can be used to delete one (or all) sessions. It differs from the built-in Zellij `delete-session` and `delete-all-sessions` in that it also deletes sessions that are "exited". Zellij keeps closed sessions around as "exited" for a certain amount of time in case you go to re-attach to them it can resurrect them instead of creating a new session. I've found that sometimes this causes strange behavior, and so wanted a way to immediately delete exited sessions to forcibly create new ones from scratch.
 
