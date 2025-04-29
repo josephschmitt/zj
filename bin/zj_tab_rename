@@ -2,7 +2,7 @@
 
 zellij_tab_name_update() {
   if [[ -n $ZELLIJ ]]; then
-    local current_dir=$PWD
+    local current_dir=${1:-$PWD}
     if [[ $current_dir == "$HOME" ]]; then
       current_dir="~"
     else
@@ -12,4 +12,4 @@ zellij_tab_name_update() {
   fi
 }
 
-zellij_tab_name_update
+zellij_tab_name_update "$1"

@@ -96,6 +96,7 @@ fi
 
 if [ -n "$ZELLIJ" ]; then
   zellij action new-tab --cwd "$cwd" --layout "${layout}"
+  zj_tab_rename "$cwd"
 else
   pushd "$cwd" >/dev/null || exit 0
   if [ -n "${name}" ] && zellij list-sessions | grep -q "$name"; then
