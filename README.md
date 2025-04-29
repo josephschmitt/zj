@@ -1,6 +1,8 @@
 # ZJ: Quality of Life Zellij Scripts
 
-ZJ is a collection of small utility scripts that make starting, managing, and clearing [Zellij](https://zellij.dev/) sessions easier based on my most common use cases. 
+ZJ is a collection of small utility scripts that make starting, managing, and clearing [Zellij](https://zellij.dev/) sessions easier based on my most common use cases.
+
+![2025-04-29 12 23 23](https://github.com/user-attachments/assets/c63fb1d6-6a21-41b2-9063-23f2ebf688e6)
 
 ## Features
 1. Correctly sets the current working directory when starting a new zellij session pointed at a project directory
