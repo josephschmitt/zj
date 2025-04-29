@@ -31,6 +31,10 @@ $ cp ./layouts/ide.kdl $HOME/.config/zellij/layouts/
 $ zj [--layout "ide"] [--name "my-session"] path/to/project
 ```
 
+This will start a new session, optionally using a provided layout (name or full path) and session name. The working directory of the project will automatically be set to the project path, so your `EDITOR` and your panes will be synced up to the same directory, even if you launched it from a separate one.
+
+If using `zj` from inside an existing zellij session, it'll open in a new tab instead of opening a new session, and will name the tab instead of the session.
+
 ### Environment Variables
 If you primarily use the same layout each time you launch `zj`, set the `ZJ_DEFAULT_LAYOUT` env var:
 
