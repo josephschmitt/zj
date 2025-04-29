@@ -21,26 +21,35 @@ Then add the `bin/` directory to your `PATH`.
 export PATH="$PATH:$HOME/.config/zj/bin"
 ```
 
+## Usage
+```sh
+$ zj [--layout "ide"] [--name "my-session"] [-N] path/to/project
+```
+
+This will start a new session, optionally using a provided layout (name or full path) and session name. The working directory of the project will automatically be set to the project path, so your `EDITOR` and your panes will be synced up to the same directory, even if you launched it from a separate one. Providing `-N` flag will ignore the `--name` flag as it will try to use the working directory as the name of the session and newly opened tab.
+
+If using `zj` from inside an existing zellij session, it'll open in a new tab instead of opening a new session, and will name the tab instead of the session.
+
 If you want to use the provided ["ide" layout](./layouts/ide.kdl), copy the `./layouts/ide.kdl` file to your Zellij layouts directory, usually found at `$HOME/.config/zellij/layouts/`.
 ```sh
 $ cp ./layouts/ide.kdl $HOME/.config/zellij/layouts/
 ```
 
-## Usage
+Or provide the path to the file to the `--layout` flag.
 ```sh
-$ zj [--layout "ide"] [--name "my-session"] path/to/project
+$ zj --layout path/to/layout.kdl
 ```
-
-This will start a new session, optionally using a provided layout (name or full path) and session name. The working directory of the project will automatically be set to the project path, so your `EDITOR` and your panes will be synced up to the same directory, even if you launched it from a separate one.
-
-If using `zj` from inside an existing zellij session, it'll open in a new tab instead of opening a new session, and will name the tab instead of the session.
 
 ### Environment Variables
 If you primarily use the same layout each time you launch `zj`, set the `ZJ_DEFAULT_LAYOUT` env var:
 
 ```sh
-$ env ZJ_SETUP_LAYOUT="ide" 
+$ env ZJ_DEFAULT_LAYOUT="ide" 
 # From now on will default to the editor layout when the `--layout` flag is not provided
+$ zj path/to/project
+
+# Or set it to the path to your layout
+$ env ZJ_DEFAULT_LAYOUT="/path/to/layout.kdl" 
 $ zj path/to/project
 ```
 
