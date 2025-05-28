@@ -88,7 +88,22 @@ fi
 # Optional params
 #
 # Working directory to open in, defaults to pwd
-cwd="$(cd "${1:-$(pwd)}" && pwd)"
+if command -v zoxide >/dev/null 2>&1 && [[ -n "${1}" ]]; then
+  zoxide_out=$(zoxide query "${1}" 2>&1)
+  if zoxide query "${1}" >/dev/null 2>&1; then
+    cwd="$zoxide_out"
+  else
+    echo "$zoxide_out" >&2
+    exit 1
+  fi
+else
+  if cd "${1:-$(pwd)}"; then
+    cwd="$(pwd)"
+  else
+    echo "Could not change directory to ${1:-$(pwd)}" >&2
+    exit 1
+  fi
+fi
 # Default session/tab name to the basename of the provided dir if -N flag set
 if [[ "${name}" == "__basename__" ]]; then
   name="$(basename "${cwd}")"
