@@ -88,19 +88,20 @@ fi
 # Optional params
 #
 # Working directory to open in, defaults to pwd
-if command -v zoxide >/dev/null 2>&1 && [[ -n "${1}" ]]; then
-  zoxide_out=$(zoxide query "${1}" 2>&1)
-  if zoxide query "${1}" >/dev/null 2>&1; then
+resolvedPath=$(cd "${1}" && pwd 2>/dev/null || echo "${1:-$(pwd)}")
+if command -v zoxide >/dev/null 2>&1 && [[ -n "${resolvedPath}" ]]; then
+  zoxide_out=$(zoxide query "${resolvedPath}" 2>&1)
+  if zoxide query "${resolvedPath}" >/dev/null 2>&1; then
     cwd="$zoxide_out"
   else
     echo "$zoxide_out" >&2
     exit 1
   fi
 else
-  if cd "${1:-$(pwd)}"; then
+  if cd "${resolvedPath}"; then
     cwd="$(pwd)"
   else
-    echo "Could not change directory to ${1:-$(pwd)}" >&2
+    echo "Could not change directory to ${resolvedPath}" >&2
     exit 1
   fi
 fi
