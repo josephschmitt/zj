@@ -21,6 +21,8 @@ Options:
 
 Environment Variables:
   ZJ_DEFAULT_LAYOUT    Default zellij layout to use.
+  ZJ_LAYOUTS_DIR       Optional directory to look for zellij layouts.
+                       If not set, will use the default layout directory.
   ZJ_ALWAYS_NAME       If true, will always use the basename of the target
                        directory as the name of the tab/session when starting.
 
@@ -83,6 +85,10 @@ done
 
 if [[ -z "${name}" && "${ZJ_ALWAYS_NAME:-false}" == "true" ]]; then
   name="__basename__"
+fi
+
+if [[ ! -f "${layout}" && -d "${ZJ_LAYOUTS_DIR:-}" ]]; then
+  layout="${ZJ_LAYOUTS_DIR}/${layout}"
 fi
 
 # Optional params
