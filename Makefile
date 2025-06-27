@@ -1,4 +1,4 @@
-.PHONY: test install clean help
+.PHONY: test install clean help shellcheck setup-hooks
 
 # Default target
 help:
@@ -6,14 +6,22 @@ help:
 	@echo "=================================="
 	@echo ""
 	@echo "Available targets:"
-	@echo "  test     - Run unit tests (requires bats-core)"
-	@echo "  install  - Install scripts to ~/.local/bin"
-	@echo "  clean    - Remove test artifacts"
-	@echo "  help     - Show this help message"
+	@echo "  test        - Run unit tests (requires bats-core)"
+	@echo "  shellcheck  - Run shellcheck on all scripts"
+	@echo "  install     - Install scripts to ~/.local/bin"
+	@echo "  setup-hooks - Install git hooks"
+	@echo "  clean       - Remove test artifacts"
+	@echo "  help        - Show this help message"
 
 # Run unit tests
 test:
 	@./tests/run_tests.sh
+
+# Run shellcheck on all scripts
+shellcheck:
+	@echo "Running shellcheck on all scripts..."
+	@shellcheck bin/zj bin/zj_clear bin/zj_tab_rename tests/run_tests.sh
+	@echo "Shellcheck passed!"
 
 # Install scripts to user's local bin directory
 install:
@@ -25,6 +33,14 @@ install:
 	@chmod +x ~/.local/bin/zj ~/.local/bin/zj_clear ~/.local/bin/zj_tab_rename
 	@echo "Installation complete!"
 	@echo "Make sure ~/.local/bin is in your PATH"
+
+# Install git hooks
+setup-hooks:
+	@echo "Installing git hooks..."
+	@mkdir -p .git/hooks
+	@cp .githooks/pre-push .git/hooks/
+	@chmod +x .git/hooks/pre-push
+	@echo "Git hooks installed!"
 
 # Clean up test artifacts
 clean:

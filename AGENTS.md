@@ -2,11 +2,13 @@
 
 ## Build/Test Commands
 - `make test` - Run all unit tests (requires bats-core)
+- `make shellcheck` - Run shellcheck on all scripts
 - `./tests/run_tests.sh` - Run test suite directly
 - `bats tests/test_zj.bats` - Run single test file for zj script
 - `bats tests/test_zj_clear.bats` - Run single test file for zj_clear script
 - `bats tests/test_zj_tab_rename.bats` - Run single test file for zj_tab_rename script
 - `make install` - Install scripts to ~/.local/bin
+- `make setup-hooks` - Install git hooks (pre-push runs tests + shellcheck)
 - `make clean` - Remove test artifacts
 
 ## Project Structure

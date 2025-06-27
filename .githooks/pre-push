@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Pre-push hook for ZJ project
+# Runs shellcheck and tests before allowing push
+
+set -e
+
+echo "Running pre-push checks..."
+
+# Run shellcheck
+echo "Running shellcheck..."
+if ! make shellcheck; then
+    echo "❌ Shellcheck failed. Fix issues before pushing."
+    exit 1
+fi
+
+# Run tests
+echo "Running tests..."
+if ! make test; then
+    echo "❌ Tests failed. Fix issues before pushing."
+    exit 1
+fi
+
+echo "✅ All pre-push checks passed!"
