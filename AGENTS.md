@@ -27,3 +27,8 @@ This is a Bash script collection for Zellij session management. Main scripts are
 - Prefer `command -v` over `which` for command existence checks
 - Use heredoc for multi-line help text: `read -r -d '' HELP_TEXT <<EOF`
 - Always validate required arguments and provide helpful error messages
+
+## Development Workflow
+- Commit changes at reasonable checkpoints when logical units of work are complete
+- Run `make shellcheck` and `make test` before committing to ensure code quality
+- Use descriptive commit messages that explain the purpose of changes
