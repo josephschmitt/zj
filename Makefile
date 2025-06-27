@@ -20,6 +20,15 @@ test:
 # Run shellcheck on all scripts
 shellcheck:
 	@echo "Running shellcheck on all scripts..."
+	@if ! command -v shellcheck >/dev/null 2>&1; then \
+		echo "Error: shellcheck is not installed."; \
+		echo "Please install it with:"; \
+		echo "  # On macOS with Homebrew:"; \
+		echo "  brew install shellcheck"; \
+		echo "  # On Ubuntu/Debian:"; \
+		echo "  sudo apt-get install shellcheck"; \
+		exit 1; \
+	fi
 	@shellcheck bin/zj bin/zj_clear bin/zj_tab_rename tests/run_tests.sh
 	@echo "Shellcheck passed!"
 
